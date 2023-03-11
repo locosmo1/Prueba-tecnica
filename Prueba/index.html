@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Página web completa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title">lISTA DE ESTUDIANTES</h1>
+    <div>
+      <h2 class="filter__title">Filtros</h2>
+      <div class="filter__list">
+        <form id="form">
+          <select id="filtro" name="filtro" onchange="updateSelect()">
+            <option name="identificacion" value="identificacion">
+              Identificacion
+            </option>
+            <option name="nombre" value="nombre">Nombre</option>
+            <option name="apellido" value="apellido">Apellido</option>
+            <option name="email" value="email">Email</option>
+          </select>
+
+          <input name="input" id="inputFiltro" type="text" required />
+          <input type="button" onclick="onFilter()" value="filtrar" />
+        </form>
+      </div>
+    </div>
+
+    <table id="table" class="table">
+      <tr class="table__header">
+        <th>Identificacion</th>
+
+        <th>Nombre</th>
+
+        <th>Apellido</th>
+
+        <th>Email</th>
+        <th>Link</th>
+      </tr>
+      <tr id="result"></tr>
+      <!-- 
+      <div id="ex1" class="modal">
+        <p>Thanks for clicking. That felt good.</p>
+        <a href="#" rel="modal:close">Close</a>
+      </div>
+      <p><a href="#ex1" rel="modal:open">Open Modal</a></p>
+      <button onclick="window.modal.showModal();">Abrir ventana modal</button>
+ -->
+      <dialog id="modal">
+        <p id="textoModal">texto</p>
+        <button onclick="window.modal.close();">Cerrar</button>
+      </dialog>
+    </table>
+    <script>
+      var input = document.getElementsByTagName("input");
+      console.log(input);
+      function updateSelect() {
+        const select = document.getElementById("filtro");
+        return select.value;
+      }
+
+      function onFilter() {
+        console.log("que ha pasadasd");
+        console.log(updateSelect());
+        let inputFiltro = document.getElementById("inputFiltro");
+        console.log(inputFiltro.value);
+        data("https://api.thedogapi.com/v1/breeds/" + inputFiltro.value);
+      }
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/modalUser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
+    <script type="text/javascript">
+      data();
+    </script>
+  </body>
+</html>
